@@ -1,0 +1,17 @@
+.post {
+	margin-left: 10px;
+	margin-top: 50px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.post img {
+	width: 100px;
+}
+
+.message {
+	color: white;
+	margin: 0 10px;
+}

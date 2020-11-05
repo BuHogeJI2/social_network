@@ -3,6 +3,7 @@ import Background from './Background/Background'
 import Avatar from './User/Avatar/Avatar'
 import Description from './User/Description/Description'
 import MyPosts from './MyPosts/MyPosts'
+import Post from './MyPosts/Post/Post'
 
 const Profile = () => {
 	return (
@@ -13,6 +14,10 @@ const Profile = () => {
 				<Description />
 			</div>
 			<MyPosts />
+			<Post />
+			<Post />
+			<Post />
+			<Post />
 		</main>
 	)
 }
