@@ -1,0 +1,15 @@
+/* HEADER */
+
+.header {
+	grid-area: header;
+	background-color: dimgray;
+  }
+  
+  .header img {
+	width: 75px;
+	height: 75px;
+	padding-left: 12.5px;
+	padding-top: 12.5px;
+  }
+  
+  /* END HEADER */

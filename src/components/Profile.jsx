@@ -1,6 +1,8 @@
+import css from './Profile.module.css'
+
 const Profile = () => {
 	return (
-		<main className="content">
+		<main className={css.profile_content}>
 			Main content
 		</main>
 	)

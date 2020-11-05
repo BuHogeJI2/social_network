@@ -13,63 +13,7 @@
   /* grid-gap: 10px; */
 }
 
-/* HEADER */
 
-.header {
-  grid-area: header;
-  background-color: dimgray;
-}
 
-.header img {
-  width: 75px;
-  height: 75px;
-  padding-left: 12.5px;
-  padding-top: 12.5px;
-}
 
-/* END HEADER */
 
-/* NAV */
-
-.nav { 
-  grid-area: nav;
-  background: red;
-}
-
-.nav-block {
-  position: relative;
-  min-height: 300px;
-  line-height: 0;
-  
-}
-
-.nav-block img {
-  height: 300px;
-  width: 300px;
-}
-
-.nav-link-block {
-  position: absolute;
-  width: 100%;
-  min-height: 50px;
-  bottom: 0px;
-  opacity: 70%;
-  background-color: black;
-
-}
-
-.nav-link-block span {
-  display: block;
-  color: white;
-  line-height: normal;
-
-}
-
-/* END NAV */
-
-/* CONTENT */
-
-.content {
-  grid-area: content;
-  background-color: azure;
-}
