@@ -11,7 +11,7 @@ function App() {
         <Sidebar />
         <Profile />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

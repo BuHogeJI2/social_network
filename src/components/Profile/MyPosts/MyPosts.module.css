@@ -1,0 +1,20 @@
+.my_posts {
+	margin-left: 10px;
+	width: 800px;
+	display: flex;
+	flex-direction: column;
+}
+
+h1 {
+	align-self: flex-start;
+}
+
+.btn {
+	align-self: flex-end;
+}
+
+#textarea {
+	height: 50px;
+	margin: 10px 0;
+	background-color: #EBF5F6;
+}

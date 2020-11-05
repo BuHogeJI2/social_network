@@ -2,6 +2,7 @@ import css from './Profile.module.css'
 import Background from './Background/Background'
 import Avatar from './User/Avatar/Avatar'
 import Description from './User/Description/Description'
+import MyPosts from './MyPosts/MyPosts'
 
 const Profile = () => {
 	return (
@@ -11,6 +12,7 @@ const Profile = () => {
 				<Avatar />
 				<Description />
 			</div>
+			<MyPosts />
 		</main>
 	)
 }
