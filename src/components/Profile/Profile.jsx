@@ -5,7 +5,7 @@ import Avatar from './User/Avatar/Avatar'
 import Description from './User/Description/Description'
 import MyPosts from './MyPosts/MyPosts'
 
-const Profile = () => {
+const Profile = (props) => {
 	return (
 		<div>
 			<Background />
@@ -13,7 +13,7 @@ const Profile = () => {
 				<Avatar />
 				<Description />
 			</div>
-			<MyPosts />
+			<MyPosts posts={props.posts} />
 		</div>
 	)
 }

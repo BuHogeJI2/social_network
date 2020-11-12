@@ -2,16 +2,9 @@ import React from 'react'
 import css from './MyPosts.module.css'
 import Post from "./Post/Post";
 
-const MyPosts = () => {
+const MyPosts = (props) => {
 
-    let posts = [
-        {text: 'Why your code is too bad?', id: 1},
-        {text: 'You have to work harder', id: 2},
-        {text: 'Dont be a lazy peace of shit', id: 3},
-        {text: 'Go WORK!', id: 4},
-    ]
-
-    let postElements = posts.map(p => <Post text={p.text} /> )
+    let postElements = props.posts.map(p => <Post text={p.text} /> )
 
     return (
         <div className={css.my_posts}>
