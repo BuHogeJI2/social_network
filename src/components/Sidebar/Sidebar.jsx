@@ -9,7 +9,7 @@ const Sidebar = () => {
 				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRbbWNIEz16l8oSPuCp39LHI869mMzDBJadnQ&usqp=CAU" alt="profile"/>
 				<div className={css.text_block}><span>Profile</span></div>
 			</NavLink>
-			<NavLink to='/messages' className={css.item}>
+			<NavLink to='/dialogs' className={css.item}>
 				<img src="https://readtextmessages.net/wp-content/uploads/2014/09/best-phone-to-read-text-messages-300x248.jpg" alt="message"/>
 				<div className={css.text_block}><span>Message</span></div>
 			</NavLink>

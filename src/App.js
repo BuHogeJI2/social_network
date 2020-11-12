@@ -15,7 +15,7 @@ function App() {
                 <Sidebar/>
                 <div className='wrapper-content'>
                     <Route path='/profile' component={Profile}/>
-                    <Route path='/messages' component={Dialogs}/>
+                    <Route path='/dialogs' component={Dialogs}/>
                     <Route path='/news' component={Dialogs}/>
                     <Route path='/music' component={Dialogs}/>
                     <Route path='/settings' component={Dialogs}/>
