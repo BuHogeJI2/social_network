@@ -1,9 +1,18 @@
+import React from 'react'
 import css from './Header.module.css'
+import HeaderMenu from "./HeaderMenu/HeaderMenu";
+import {NavLink} from "react-router-dom";
 
 const Header = () => {
 	return (
-		<header className={css.header}>
-			<a href="https://reactjs.org/"><img src="https://cdn.worldvectorlogo.com/logos/react.svg" alt="logo" /></a>
+		<header>
+			<div className={css.content}>
+				<NavLink to='/'>
+					<img src="https://cdn.auth0.com/blog/react-js/react.png" alt="react logo"/>
+				</NavLink>
+				<HeaderMenu/>
+			</div>
+			<hr/>
 		</header>
 	);
 }
