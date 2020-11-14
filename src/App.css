@@ -1,21 +1,4 @@
-.wrapper {
-  display: grid;
 
-  grid-template-areas: 
-  "header header header"
-  "nav content content";
-
-  grid-template-rows: 100px 1fr;
-  grid-template-columns: 300px 1fr;
-  grid-gap: 10px;
-
-  background-color: #F1F1F1;
-}
-
-.wrapper-content {
-  grid-area: content;
-  background-color: #728485;
-}
 
 
 

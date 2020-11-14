@@ -1,0 +1,10 @@
+main {
+    min-height: 100vh;
+    background: url("https://blusignalsystems.com/wp-content/uploads/2016/12/Savin-NY-Website-Background-Web1.jpg") fixed;
+}
+
+.content_wrapper {
+    width: 1128px;
+    margin: 0 auto;
+    padding: 0;
+}
