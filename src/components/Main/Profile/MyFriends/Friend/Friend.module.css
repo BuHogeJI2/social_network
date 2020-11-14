@@ -1,0 +1,16 @@
+.friend_block {
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+
+    background: #EBF5F6;
+    border-radius: 10px;
+}
+
+.friend_block img {
+    width: 50px;
+}

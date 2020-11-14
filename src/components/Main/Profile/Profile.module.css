@@ -1,14 +1,25 @@
 .profile {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+}
 
+.main_column {
+	margin-top: 50px;
+	width: 70%;
 }
 
 .profile_block {
-	margin-top: 50px;
-	width: 70%;
-	height: 500px;
+	padding-bottom: 30px;
 	border-radius: 15px;
 	box-shadow: 0 0 5px #414040;
 	overflow: hidden;
 	background: #414040;
 
+}
+
+.right_column {
+	margin-top: 50px;
+	width: 25%;
 }
