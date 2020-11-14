@@ -1,3 +1,10 @@
 .avatar img {
-	width: 300px;
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	top: 250px;
+	margin-left: 20px;
+	border-radius: 100%;
+	box-shadow: 0 0 5px #414040;
+	background: #EBF5F6;
 }

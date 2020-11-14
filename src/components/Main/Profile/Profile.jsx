@@ -7,14 +7,15 @@ import MyPosts from './MyPosts/MyPosts'
 
 const Profile = (props) => {
 	return (
-		<div>
-			<Background />
-			<div className={css.user_block}>
+		<section className={css.profile}>
+
+			<div className={css.profile_block}>
+				<Background />
 				<Avatar />
 				<Description />
 			</div>
 			<MyPosts posts={props.state.posts} />
-		</div>
+		</section>
 	)
 }
 

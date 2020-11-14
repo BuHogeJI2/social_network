@@ -3,7 +3,7 @@ import css from './Avatar.module.css'
 const Avatar = () => {
 	return (
 		<div className={css.avatar}>
-			<img src="https://i.ytimg.com/vi/Y5GLCBjHR8U/maxresdefault.jpg" alt=""/>
+			<img src="https://icons.iconarchive.com/icons/diversity-avatars/avatars/1024/batman-icon.png" alt=""/>
 		</div>
 	)
 }

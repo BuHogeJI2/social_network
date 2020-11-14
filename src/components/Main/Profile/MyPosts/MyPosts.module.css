@@ -1,30 +1,54 @@
 /*MY_POSTS*/
 
 .my_posts {
-    margin-left: 10px;
-    width: 800px;
+    margin-top: 50px;
+    padding: 30px 0;
+    width: 70%;
+    border-radius: 15px;
+    box-shadow: 0 0 5px #414040;
+    background: #414040;
 }
 
-.my_posts_header {
-    width: 100%;
+.add_post_block {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
-h1 {
-    align-self: flex-start;
+.add_post_block h1 {
     color: white;
-    text-decoration: underline;
 }
 
-.btn {
+.add_post_block textarea {
+    width: 90%;
+    height: 100px;
+    border-radius: 10px;
+    padding: 10px;
+    background: #EBF5F6;
+}
+
+.add_post_block .btn {
     align-self: flex-end;
+    margin-top: 30px;
+    margin-right: 30px;
+    padding: 10px 40px;
+
+    background: #f97779;
+    background: linear-gradient(#f97779, #ce2424);
+    border: solid 1px #be2424;
+    border-bottom: solid 3px #bd2524;
+    box-shadow: inset 0 0 0 1px #e67e7b;
+    color: #fff;
+    text-shadow: 0 1px 0 #bd2524;
 }
 
-textarea {
-    height: 50px;
-    margin: 10px 0;
-    background-color: #EBF5F6;
+.add_post_block .btn:hover {
+    background: #ce2424;
+    background: linear-gradient(#ce2424, #f97779);
+    border: solid 1px #be2424;
+    border-bottom: solid 3px #bd2524;
+    box-shadow: inset 0 0 0 1px #e67e7b;
 }
 
 /*POSTS*/

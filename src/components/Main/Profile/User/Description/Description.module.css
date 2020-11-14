@@ -1,10 +1,21 @@
 .description {
+	margin-top: 100px;
 	margin-left: 20px;
+	width: 50%;
 	color: white;
-	text-align: left;
-
 }
 
-.name {
-	font-size: 26px;
+.row {
+	margin-top: 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+}
+.key {
+	font-weight: bold;
+}
+
+.value {
+	margin-left: 20px;
 }

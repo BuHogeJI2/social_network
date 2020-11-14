@@ -8,9 +8,9 @@ const MyPosts = (props) => {
 
     return (
         <div className={css.my_posts}>
-            <div className={css.my_posts_header}>
+            <div className={css.add_post_block}>
                 <h1>My Posts</h1>
-                <textarea placeholder="your news"></textarea>
+                <textarea placeholder="your news"/>
                 <button className={css.btn}>Send</button>
             </div>
             <div className={css.posts}>
