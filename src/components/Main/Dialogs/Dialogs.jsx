@@ -10,11 +10,17 @@ const Dialogs = (props) => {
 
     return (
         <div className={css.dialogs}>
-            <div className={css.dialog_items}>
-                {dialogsElements}
+            <div className={css.dialogs_block}>
+                <h2>Messaging</h2>
+                <div className={css.dialog_items}>
+                    {dialogsElements}
+                </div>
             </div>
-            <div className={css.messages}>
-                {messagesElements}
+            <div className={css.messages_block}>
+                <h2>From Name</h2>
+                <div className={css.messages}>
+                    {messagesElements}
+                </div>
             </div>
         </div>
     )

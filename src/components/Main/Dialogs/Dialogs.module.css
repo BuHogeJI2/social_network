@@ -1,20 +1,26 @@
 .dialogs  {
+    margin-top: 50px;
+    padding: 30px;
+    width: 70%;
+    border-radius: 15px;
+    box-shadow: 0 0 5px #414040;
+    background: #414040;
     display: grid;
-    grid-template-columns: 2fr 8fr;
+    grid-template-columns: 3fr 7fr;
 }
 
-.dialog_items, .messages {
-    padding: 10px;
-}
-
-.dialog, .message {
-    padding: 5px;
-}
-
-.dialog {
+h2 {
+    margin: 0;
     color: white;
+    text-align: center;
 }
 
-.message {
-    color: orange;
+.messages {
+    width: 70%;
+    height: 70%;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background: #EBF5F6;
+    border-radius: 10px;
 }
+
