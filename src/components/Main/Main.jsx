@@ -9,9 +9,17 @@ const Main = (props) => {
     return (
         <main>
             <div className={css.content_wrapper}>
-                <Route path='/profile' render={() => <Profile state={props.state.profilePage}/>}/>
+                <Route path='/profile' render={() => <Profile
+                    profilePage={props.state.profilePage}
+                    addPost={props.addPost}
+                    changeTextarea={props.changeTextarea}
+                />}/>
                 <Route path='/dialogs'
-                       render={() => <Dialogs state={props.state.dialogsPage}/>}/>
+                       render={() => <Dialogs
+                           dialogsPage={props.state.dialogsPage}
+                           changeInputMessageText={props.changeInputMessageText}
+                           addNewMessage={props.addNewMessage}
+                       />}/>
             </div>
         </main>
     )

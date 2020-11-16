@@ -9,7 +9,13 @@ function App(props) {
     return (
         <BrowserRouter>
             <Header/>
-            <Main state={props.state}/>
+            <Main
+                state={props.state}
+                addPost={props.addPost}
+                changeTextarea={props.changeTextarea}
+                changeInputMessageText={props.changeInputMessageText}
+                addNewMessage={props.addNewMessage}
+            />
         </BrowserRouter>
     )
 }
