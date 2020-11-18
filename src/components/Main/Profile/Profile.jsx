@@ -16,10 +16,10 @@ const Profile = (props) => {
 					<Avatar />
 					<Description />
 				</div>
-				<MyPosts profilePage={props.profilePage} addPost={props.addPost} changeTextarea={props.changeTextarea} />
+				<MyPosts profile={props.profile} dispatch={props.dispatch} />
 			</div>
 			<div className={css.right_column}>
-				<MyFriends friends={props.profilePage.friends} />
+				<MyFriends friends={props.profile.friends} />
 			</div>
 		</section>
 	)
