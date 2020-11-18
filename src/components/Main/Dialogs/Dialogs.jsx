@@ -2,6 +2,7 @@ import React from 'react'
 import css from './Dialogs.module.css'
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
+import {addNewMessageActionCreator, changeDialogsTextareaActionCreator} from "../../../redux/state";
 
 const Dialogs = (props) => {
 
@@ -11,15 +12,11 @@ const Dialogs = (props) => {
     let textareaRef = React.createRef();
 
     let changeText = () => {
-        props.dispatch({
-            type: 'CHANGE-TEXTAREA',
-            page: 'DIALOGS',
-            value: textareaRef.current.value,
-        })
+        props.dispatch(changeDialogsTextareaActionCreator(textareaRef.current.value))
     }
 
     let sendMessage = () => {
-        props.dispatch({type: 'ADD-NEW-MESSAGE'});
+        props.dispatch(addNewMessageActionCreator());
     }
 
     return (

@@ -1,6 +1,10 @@
 import React from 'react'
 import css from './MyPosts.module.css'
 import Post from "./Post/Post";
+import {
+    addNewPostActionCreator,
+    changeProfileTextareaActionCreator,
+} from "../../../../redux/state";
 
 const MyPosts = (props) => {
 
@@ -8,15 +12,11 @@ const MyPosts = (props) => {
     let textareaRef = React.createRef();
 
     let addNewPost = () => {
-        props.dispatch({type: 'ADD-NEW-POST'})
+        props.dispatch(addNewPostActionCreator())
     }
 
     let onTextareaChange = () => {
-        props.dispatch({
-            type: 'CHANGE-TEXTAREA',
-            page: 'PROFILE',
-            value: textareaRef.current.value,
-        })
+        props.dispatch(changeProfileTextareaActionCreator(textareaRef.current.value))
     }
 
     return (
