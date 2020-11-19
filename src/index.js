@@ -6,7 +6,7 @@ import App from "./App";
 import store from "./redux/redux-store";
 
 
-export let renderEntireTree = (state) => {
+export let renderEntireTree = () => {
     ReactDOM.render(
         <React.StrictMode>
             <App store={store} />
@@ -15,11 +15,10 @@ export let renderEntireTree = (state) => {
     );
 }
 
-renderEntireTree(store.getState());
+renderEntireTree();
 
 store.subscribe( () => {
-	let state = store.getState();
-	renderEntireTree(state);
+	renderEntireTree();
 } );
 
 reportWebVitals();

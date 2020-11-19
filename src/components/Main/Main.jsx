@@ -2,10 +2,11 @@ import React from 'react'
 import css from './Main.module.css'
 import {Route} from "react-router-dom";
 import Profile from "./Profile/Profile";
-import DialogsContainer from "./Dialogs/Dialogs";
+import DialogsContainer from "./Dialogs/DialogsContainer";
 
 
 const Main = (props) => {
+
     return (
         <main>
             <div className={css.content_wrapper}>

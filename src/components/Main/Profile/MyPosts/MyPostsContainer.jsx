@@ -3,17 +3,18 @@ import {
     addNewPostActionCreator,
     changeProfileTextareaActionCreator,
 } from "../../../../redux/profile-reducer";
+import MyPosts from "./MyPosts";
 
 const MyPostsContainer = (props) => {
-
+    debugger
     let state = props.store.getState();
 
     let addNewPost = () => {
-        props.dispatch(addNewPostActionCreator())
+        props.store.dispatch(addNewPostActionCreator())
     }
 
     let changeProfileTextarea = (text) => {
-        props.dispatch(changeProfileTextareaActionCreator(text));
+        props.store.dispatch(changeProfileTextareaActionCreator(text));
     }
 
     return (
@@ -25,4 +26,4 @@ const MyPostsContainer = (props) => {
     )
 }
 
-export default MyPostsContainer
+export default MyPostsContainer;

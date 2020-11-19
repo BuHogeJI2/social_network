@@ -1,10 +1,6 @@
 import React from 'react'
 import css from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {
-    addNewPostActionCreator,
-    changeProfileTextareaActionCreator,
-} from "../../../../redux/profile-reducer";
 
 const MyPosts = (props) => {
 
@@ -16,7 +12,7 @@ const MyPosts = (props) => {
     }
 
     let onTextareaChange = () => {
-        props.changeProfileTextarea(textareaRef.current.value)
+        props.changeProfileTextarea(textareaRef.current.value);
     }
 
     return (

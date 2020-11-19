@@ -3,10 +3,11 @@ import css from './Profile.module.css'
 import Background from './User/Background/Background'
 import Avatar from './User/Avatar/Avatar'
 import Description from './User/Description/Description'
-import MyPostsContainer from './MyPosts/MyPosts'
-import MyFriendsContainer from "./MyFriends/MyFriends";
+import MyPostsContainer from './MyPosts/MyPostsContainer'
+import MyFriendsContainer from "./MyFriends/MyFriendsContainer";
 
 const Profile = (props) => {
+
 	return (
 		<section className={css.profile}>
 			<div className={css.main_column}>

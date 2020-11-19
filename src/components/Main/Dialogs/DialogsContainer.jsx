@@ -1,5 +1,6 @@
 import React from 'react'
 import {addNewMessageActionCreator, changeDialogsTextareaActionCreator} from "../../../redux/dialogs-reducer";
+import Dialogs from "./Dialogs";
 
 const DialogsContainer = (props) => {
 
@@ -20,4 +21,4 @@ const DialogsContainer = (props) => {
     )
 }
 
-export default DialogsContainer
+export default DialogsContainer;
