@@ -4,7 +4,7 @@ import Post from "./Post/Post";
 import {
     addNewPostActionCreator,
     changeProfileTextareaActionCreator,
-} from "../../../../redux/state";
+} from "../../../../redux/profile-reducer";
 
 const MyPosts = (props) => {
 

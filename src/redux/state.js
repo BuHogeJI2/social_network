@@ -1,8 +1,5 @@
-const ADD_NEW_MESSAGE = 'ADD-NEW-MESSAGE';
-const ADD_NEW_POST = 'ADD-NEW-POST';
-const CHANGE_TEXTAREA = 'CHANGE-TEXTAREA';
-const PROFILE = 'PROFILE';
-const DIALOGS = 'DIALOGS';
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
 
 let store = {
 
@@ -22,7 +19,7 @@ let store = {
                 {id: 5, name: 'IT-Kamasutra', img: 'https://www.ifsw.org/wp-content/uploads/2018/03/friends.png'},
             ],
             textarea: {
-                value: 'Input text',
+                value: '',
             },
         },
         dialogsPage: {
@@ -39,7 +36,7 @@ let store = {
                 {id: 3, message: 'Where is cities???'},
             ],
             textarea: {
-                value: 'Input text',
+                value: '',
             },
         },
     },
@@ -55,65 +52,13 @@ let store = {
     },
 
     dispatch(action) {
-        if (action.type === ADD_NEW_POST) {
-            let newPost = {
-                text: this._state.profilePage.textarea.value,
-                id: 5,
-            }
 
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.textarea.value = '';
-            this._subscriber(this._state);
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
 
-        } else {
-            if (action.type === ADD_NEW_MESSAGE) {
-                let newMessage = {
-                    id: 4,
-                    message: this._state.dialogsPage.textarea.value,
-                }
+        this._subscriber(this._state);
 
-                this._state.dialogsPage.messages.push(newMessage);
-                this._state.dialogsPage.textarea.value = '';
-                this._subscriber(this._state)
-
-            } else if (action.type === CHANGE_TEXTAREA) {
-                if (action.page === PROFILE) {
-                    this._state.profilePage.textarea.value = action.value;
-                    this._subscriber(this._state)
-                } else if (action.page === DIALOGS) {
-                    this._state.dialogsPage.textarea.value = action.value;
-                    this._subscriber(this._state)
-                }
-
-            }
-        }
     },
-
 }
-
-export const addNewPostActionCreator = () => {
-    return {type: ADD_NEW_POST}
-}
-
-export const addNewMessageActionCreator = () => {
-    return {type: ADD_NEW_MESSAGE}
-}
-
-export const changeProfileTextareaActionCreator = (value) => {
-    return ({
-        type: CHANGE_TEXTAREA,
-        page: PROFILE,
-        value: value,
-    })
-}
-
-export const changeDialogsTextareaActionCreator = (value) => {
-    return ({
-        type: CHANGE_TEXTAREA,
-        page: DIALOGS,
-        value: value,
-    })
-}
-
 
 export default store;
