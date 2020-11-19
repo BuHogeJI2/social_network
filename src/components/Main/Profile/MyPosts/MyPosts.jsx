@@ -8,22 +8,22 @@ import {
 
 const MyPosts = (props) => {
 
-    let postElements = props.profile.posts.map(p => <Post text={p.text} /> )
+    let postElements = props.profilePage.posts.map(p => <Post text={p.text} /> )
     let textareaRef = React.createRef();
 
     let addNewPost = () => {
-        props.dispatch(addNewPostActionCreator())
+        props.addNewPost();
     }
 
     let onTextareaChange = () => {
-        props.dispatch(changeProfileTextareaActionCreator(textareaRef.current.value))
+        props.changeProfileTextarea(textareaRef.current.value)
     }
 
     return (
         <div className={css.my_posts}>
             <div className={css.add_post_block}>
                 <h1>My Posts</h1>
-                <textarea onChange={onTextareaChange} ref={textareaRef} placeholder="your news" value={props.profile.textarea.value}/>
+                <textarea onChange={onTextareaChange} ref={textareaRef} placeholder="your news" value={props.profilePage.textarea.value}/>
                 <button onClick={addNewPost} className={css.btn}>Add post</button>
             </div>
             <div className={css.posts}>

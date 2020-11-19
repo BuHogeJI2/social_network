@@ -2,7 +2,7 @@ import React from 'react'
 import css from './Main.module.css'
 import {Route} from "react-router-dom";
 import Profile from "./Profile/Profile";
-import Dialogs from "./Dialogs/Dialogs";
+import DialogsContainer from "./Dialogs/Dialogs";
 
 
 const Main = (props) => {
@@ -10,9 +10,9 @@ const Main = (props) => {
         <main>
             <div className={css.content_wrapper}>
                 <Route path='/profile'
-                       render={() => <Profile profile={props.state.profilePage} dispatch={props.dispatch}/>}/>
+                       render={() => <Profile store={props.store} />}/>
                 <Route path='/dialogs'
-                       render={() => <Dialogs dialogs={props.state.dialogsPage} dispatch={props.dispatch} />}/>
+                       render={() => <DialogsContainer store={props.store} />}/>
             </div>
         </main>
     )

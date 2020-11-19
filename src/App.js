@@ -9,7 +9,7 @@ function App(props) {
     return (
         <BrowserRouter>
             <Header/>
-            <Main state={props.state} dispatch={props.dispatch} />
+            <Main store={props.store}/>
         </BrowserRouter>
     )
 }
