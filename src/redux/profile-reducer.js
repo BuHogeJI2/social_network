@@ -24,24 +24,21 @@ let initialState = {
 const profileReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case ADD_NEW_POST:
-            let newPost = {
-                text: state.textarea.value,
-                id: 5,
+        case ADD_NEW_POST: {
+            return {
+                ...state,
+                posts: [...state.posts, {text: state.textarea.value, id: 5}],
+                textarea: {value: ''},
             }
-
-            state.posts.push(newPost);
-            state.textarea.value = '';
-
-            return state;
-
-        case CHANGE_TEXTAREA:
+        }
+        case CHANGE_TEXTAREA: {
             if (action.page === PROFILE) {
-                state.textarea.value = action.value;
+                return {
+                    ...state,
+                    textarea: {value: action.value}
+                }
             }
-
-            return state;
-
+        }
         default:
             return state;
     }

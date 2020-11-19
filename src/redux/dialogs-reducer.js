@@ -23,27 +23,24 @@ let initialState = {
 const dialogsReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case ADD_NEW_MESSAGE:
-            let newMessage = {
-                id: 4,
-                message: state.textarea.value,
+        case ADD_NEW_MESSAGE: {
+            return {
+                ...state,
+                messages: [...state.messages, {id: 4, message: state.textarea.value}],
+                textarea: {value: ''},
             }
-
-            state.messages.push(newMessage);
-            state.textarea.value = '';
-
-            return state;
-
-        case CHANGE_TEXTAREA:
+        }
+        case CHANGE_TEXTAREA: {
             if (action.page === DIALOGS) {
-                state.textarea.value = action.value;
+                return {
+                    ...state,
+                    textarea: {value: action.value},
+                }
             }
-            return state;
-
+        }
         default:
             return state;
     }
-
 }
 
 export const addNewMessageActionCreator = () => {

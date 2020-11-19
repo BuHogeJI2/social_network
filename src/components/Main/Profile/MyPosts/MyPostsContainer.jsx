@@ -4,26 +4,27 @@ import {
     changeProfileTextareaActionCreator,
 } from "../../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
+import {connect} from "react-redux";
 
-const MyPostsContainer = (props) => {
-    debugger
-    let state = props.store.getState();
-
-    let addNewPost = () => {
-        props.store.dispatch(addNewPostActionCreator())
+let mapStateToProps = (state) => {
+    return {
+        profilePage: state.profilePage,
     }
-
-    let changeProfileTextarea = (text) => {
-        props.store.dispatch(changeProfileTextareaActionCreator(text));
-    }
-
-    return (
-        <MyPosts
-          profilePage={state.profilePage}
-          changeProfileTextarea={changeProfileTextarea}
-          addNewPost={addNewPost}
-        />
-    )
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        addNewPost: () => {
+            dispatch(addNewPostActionCreator());
+        },
+        changeProfileTextarea: (text) => {
+            dispatch(changeProfileTextareaActionCreator(text));
+        }
+    }
+
+}
+
+
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
 
 export default MyPostsContainer;

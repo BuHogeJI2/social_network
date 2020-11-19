@@ -1,9 +1,19 @@
 import React from 'react'
 import MyFriends from "./MyFriends";
+import {connect} from "react-redux";
 
-const MyFriendsContainer = (props) => {
-
-    return <MyFriends friends={props.store.getState().profilePage.friends}/>
+let mapStateToProps = (state) => {
+    return {
+        friends: state.profilePage.friends,
+    }
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+}
+
+const MyFriendsContainer = connect(mapStateToProps, mapDispatchToProps)(MyFriends);
 
 export default MyFriendsContainer;

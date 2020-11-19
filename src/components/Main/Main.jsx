@@ -5,15 +5,13 @@ import Profile from "./Profile/Profile";
 import DialogsContainer from "./Dialogs/DialogsContainer";
 
 
-const Main = (props) => {
+const Main = () => {
 
     return (
         <main>
             <div className={css.content_wrapper}>
-                <Route path='/profile'
-                       render={() => <Profile store={props.store} />}/>
-                <Route path='/dialogs'
-                       render={() => <DialogsContainer store={props.store} />}/>
+                <Route path='/profile' render={() => <Profile />}/>
+                <Route path='/dialogs' render={() => <DialogsContainer />}/>
             </div>
         </main>
     )

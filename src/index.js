@@ -4,21 +4,18 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from "./App";
 import store from "./redux/redux-store";
+import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
 
-
-export let renderEntireTree = () => {
-    ReactDOM.render(
-        <React.StrictMode>
-            <App store={store} />
-        </React.StrictMode>,
-        document.getElementById('root')
-    );
-}
-
-renderEntireTree();
-
-store.subscribe( () => {
-	renderEntireTree();
-} );
+ReactDOM.render(
+    <React.StrictMode>
+        <BrowserRouter>
+            <Provider store={store}>
+                <App />
+            </Provider>
+        </BrowserRouter>
+    </React.StrictMode>,
+    document.getElementById('root')
+);
 
 reportWebVitals();

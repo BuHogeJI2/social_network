@@ -6,7 +6,7 @@ import Description from './User/Description/Description'
 import MyPostsContainer from './MyPosts/MyPostsContainer'
 import MyFriendsContainer from "./MyFriends/MyFriendsContainer";
 
-const Profile = (props) => {
+const Profile = () => {
 
 	return (
 		<section className={css.profile}>
@@ -16,10 +16,10 @@ const Profile = (props) => {
 					<Avatar />
 					<Description />
 				</div>
-				<MyPostsContainer store={props.store} />
+				<MyPostsContainer />
 			</div>
 			<div className={css.right_column}>
-				<MyFriendsContainer store={props.store} />
+				<MyFriendsContainer />
 			</div>
 		</section>
 	)
