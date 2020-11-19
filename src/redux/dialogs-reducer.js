@@ -2,7 +2,25 @@ const ADD_NEW_MESSAGE = 'ADD-NEW-MESSAGE';
 const CHANGE_TEXTAREA = 'CHANGE-TEXTAREA';
 const DIALOGS = 'DIALOGS';
 
-const dialogsReducer = (state, action) => {
+let initialState = {
+    dialogs: [
+        {id: 1, name: 'Alesya'},
+        {id: 2, name: 'Nikita'},
+        {id: 3, name: 'Vlad'},
+        {id: 4, name: 'Andrew'},
+        {id: 5, name: 'IT-Kamasutra'},
+    ],
+    messages: [
+        {id: 1, message: 'Hi!'},
+        {id: 2, message: 'When to the gym?'},
+        {id: 3, message: 'Where is cities???'},
+    ],
+    textarea: {
+        value: '',
+    },
+}
+
+const dialogsReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_NEW_MESSAGE:
