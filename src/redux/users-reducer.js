@@ -3,52 +3,7 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_STATE = 'SET_STATE';
 
 let initialState = {
-    users: [
-        {
-            id:1,
-            followed: true,
-            status: "User's status",
-            photoUrl: 'https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png',
-            fullName: 'Dmitry',
-            location: {
-                country: 'Belarus',
-                city: 'Minsk',
-            }
-        },
-        {
-            id:2,
-            followed: false,
-            status: "User's status",
-            photoUrl: 'https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png',
-            fullName: 'Alesya',
-            location: {
-                country: 'Belarus',
-                city: 'Minsk',
-            }
-        },
-        {
-            id:3,
-            followed: true,
-            status: "User's status",
-            photoUrl: 'https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png',
-            fullName: 'Nikita',
-            location: {
-                country: 'Belarus',
-                city: 'Minsk',
-            }
-        },
-        {
-            id:4,
-            followed: true,
-            status: "User's status",
-            photoUrl: 'https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png',
-            fullName: 'Andrew',
-            location: {
-                country: 'Russia',
-                city: 'Moscow',
-            }
-        },
-    ]
+    users: []
 }
 
 const usersReducer = (state = initialState, action) => {
