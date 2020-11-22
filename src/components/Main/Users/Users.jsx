@@ -5,11 +5,30 @@ import userPhoto from '../../../assets/images/user_photo_not_found.png'
 
 class Users extends React.Component {
 
-    constructor(props) {
-        super(props)
-
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`).then(response => {
             this.props.setState(response.data.items);
+            this.props.setTotalCount(response.data.totalCount);
+        })
+    }
+
+    getPagesCount = () => {
+        return Math.ceil(this.props.totalCount / this.props.pageSize);
+    }
+
+    getPages = (count) => {
+        let result = [];
+        for (let i = 1; i <= count; i++) {
+            result.push(i);
+        }
+        return result;
+    }
+
+    pageClick = (page) => {
+        this.props.setCurrentPage(page);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${page}`).then(response => {
+            this.props.setState(response.data.items);
+            this.props.setTotalCount(response.data.totalCount);
         })
     }
 
@@ -53,6 +72,19 @@ class Users extends React.Component {
                     </div>
                 </div>)
             }
+            <div className={css.pagination_block}>
+                {
+                    this.getPages(this.getPagesCount()).map(p => {
+                        return <div
+                            className={`${css.page_block} ${p === this.props.currentPage && css.current_page}`}
+                            onClick={() => {
+                                this.pageClick(p)
+                            }}
+                        >{p}
+                        </div>
+                    })
+                }
+            </div>
         </div>
     }
 }

@@ -45,3 +45,22 @@
 .user_status_block {
     margin-top: 20px;
 }
+
+.pagination_block {
+    width: 90%;
+    margin: 20px auto 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.page_block {
+    margin: 5px;
+    border-radius: 5px;
+    background: #EBF5F6;
+}
+
+.current_page {
+    background: red;
+}
