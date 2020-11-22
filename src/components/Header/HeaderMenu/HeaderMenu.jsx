@@ -13,6 +13,10 @@ const HeaderMenu = (props) => {
                 <img src="https://cdn2.iconfinder.com/data/icons/business-management-2-11/66/134-512.png" alt=""/>
                 <p>Dialogs</p>
             </NavLink>
+            <NavLink to='/users' className={css.item}>
+                <img src="https://image.flaticon.com/icons/png/512/32/32441.png" alt=""/>
+                <p>Users</p>
+            </NavLink>
             <NavLink to='/news' className={css.item}>
                 <img src="https://icons-for-free.com/iconfiles/png/512/events+news+newspaper+icon-1320086461674084705.png" alt=""/>
                 <p>News</p>
