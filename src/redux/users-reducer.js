@@ -53,10 +53,6 @@ const usersReducer = (state = initialState, action) => {
             }
         }
 
-        default: {
-            return state;
-        }
-
         case SET_CURRENT_PAGE: {
             return {
                 ...state,
@@ -69,6 +65,10 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 isFetching: action.isFetching,
             }
+        }
+
+        default: {
+            return state;
         }
     }
 

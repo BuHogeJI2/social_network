@@ -25,6 +25,7 @@
 
 .user_action_part img {
     width: 50px;
+    cursor: pointer;
 }
 
 .user_action_part button {

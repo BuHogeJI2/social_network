@@ -1,28 +1,26 @@
 import React from 'react'
-import css from './Profile.module.css'
-import Background from './User/Background/Background'
-import Avatar from './User/Avatar/Avatar'
-import Description from './User/Description/Description'
-import MyPostsContainer from './MyPosts/MyPostsContainer'
-import MyFriendsContainer from "./MyFriends/MyFriendsContainer";
+import Profile from "./Profile";
+import {connect} from "react-redux";
+import * as axios from "axios";
+import {setProfileData} from "../../../redux/profile-reducer";
 
-const Profile = () => {
+class ProfileContainer extends React.Component {
 
-	return (
-		<section className={css.profile}>
-			<div className={css.main_column}>
-				<div className={css.profile_block}>
-					<Background />
-					<Avatar />
-					<Description />
-				</div>
-				<MyPostsContainer />
-			</div>
-			<div className={css.right_column}>
-				<MyFriendsContainer />
-			</div>
-		</section>
-	)
+	componentDidMount = () => {
+		axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(response => {
+			this.props.setProfileData(response.data);
+		})
+	}
+
+	render() {
+		return <Profile profilePage={this.props.profilePage} />
+	}
 }
 
-export default Profile;
+let mapStateToProps = (state) => ({
+	profilePage: state.profilePage,
+})
+
+export default connect(mapStateToProps, {
+	setProfileData,
+})(ProfileContainer);

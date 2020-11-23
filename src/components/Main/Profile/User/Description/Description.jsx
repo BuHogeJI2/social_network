@@ -1,9 +1,9 @@
 import css from './Description.module.css'
 
-const Description = () => {
+const Description = (props) => {
 	return (
 		<div className={css.description}>
-			<h2 className={css.name}>Dmitry Demidovich</h2>
+			<h2 className={css.name}>{props.profileData.fullName}</h2>
 			<div className={css.row}>
 				<div className={css.key}>Date of birth:</div>
 				<div className={css.value}>3 october</div>

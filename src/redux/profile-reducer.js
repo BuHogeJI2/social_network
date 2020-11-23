@@ -1,6 +1,7 @@
 const ADD_NEW_POST = 'ADD-NEW-POST';
 const CHANGE_TEXTAREA = 'CHANGE-TEXTAREA';
 const PROFILE = 'PROFILE';
+const SET_PROFILE_DATA = 'SET_PROFILE_DATA';
 
 let initialState = {
     posts: [
@@ -19,11 +20,13 @@ let initialState = {
     textarea: {
         value: '',
     },
+    profileData: {},
 }
 
 const profileReducer = (state = initialState, action) => {
 
     switch (action.type) {
+
         case ADD_NEW_POST: {
             return {
                 ...state,
@@ -31,16 +34,26 @@ const profileReducer = (state = initialState, action) => {
                 textarea: {value: ''},
             }
         }
+
         case CHANGE_TEXTAREA: {
             if (action.page === PROFILE) {
                 return {
                     ...state,
                     textarea: {value: action.value}
                 }
+            } break;
+        }
+
+        case SET_PROFILE_DATA: {
+            return {
+                ...state,
+                profileData: action.profileData,
             }
         }
-        default:
+
+        default: {
             return state;
+        }
     }
 }
 
@@ -54,5 +67,7 @@ export const changeProfileTextareaActionCreator = (value) => {
         value: value,
     })
 }
+
+export const setProfileData = (profileData) => ({type: SET_PROFILE_DATA, profileData})
 
 export default profileReducer;

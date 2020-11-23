@@ -1,9 +1,9 @@
 import css from './Background.module.css' 
 
-const Background = () => {
+const Background = (props) => {
 	return (
 		<div className={css.background}>
-			<img src="https://wallpaperaccess.com/full/1760835.jpg" alt=""/>
+			<img src={props.img} alt=""/>
 		</div>
 	)
 }
