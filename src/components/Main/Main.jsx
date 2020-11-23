@@ -11,7 +11,7 @@ const Main = () => {
     return (
         <main>
             <div className={css.content_wrapper}>
-                <Route path='/profile' render={() => <ProfileContainer />}/>
+                <Route path='/profile/:userId?' render={() => <ProfileContainer />}/>
                 <Route path='/dialogs' render={() => <DialogsContainer />}/>
                 <Route path='/users' render={ () => <UsersContainer /> } />
             </div>

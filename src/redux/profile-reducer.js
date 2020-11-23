@@ -20,7 +20,7 @@ let initialState = {
     textarea: {
         value: '',
     },
-    profileData: {},
+    profileData: null,
 }
 
 const profileReducer = (state = initialState, action) => {
