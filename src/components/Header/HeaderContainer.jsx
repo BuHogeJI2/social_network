@@ -1,20 +1,31 @@
 import React from 'react'
-import css from './Header.module.css'
-import HeaderMenu from "./HeaderMenu/HeaderMenu";
-import {NavLink} from "react-router-dom";
+import Header from "./Header";
+import {setAuthData} from "../../redux/auth-reducer";
+import {connect} from "react-redux";
+import * as axios from 'axios'
 
-const Header = () => {
-	return (
-		<header>
-			<div className={css.content}>
-				<NavLink to='/'>
-					<img src="https://cdn.auth0.com/blog/react-js/react.png" alt="react logo"/>
-				</NavLink>
-				<HeaderMenu/>
-			</div>
-			<hr/>
-		</header>
-	);
+class HeaderContainer extends React.Component {
+
+	componentDidMount() {
+		axios.get('https://social-network.samuraijs.com/api/1.0/auth/me', {
+			withCredentials: true,
+		}).then(response => {
+			let {id, email, login} = response.data.data;
+			this.props.setAuthData(id, email, login);
+		});
+	}
+
+	render() {
+		return <Header {...this.props} />;
+	}
 }
 
-export default Header;
+let mapStateToProps = (state) => {
+	return {
+		authData: state.auth,
+	}
+}
+
+export default connect(mapStateToProps, {
+	setAuthData,
+})(HeaderContainer);

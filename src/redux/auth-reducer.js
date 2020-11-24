@@ -1,41 +1,20 @@
-const ADD_NEW_MESSAGE = 'ADD-NEW-MESSAGE';
-const CHANGE_TEXTAREA = 'CHANGE-TEXTAREA';
-const DIALOGS = 'DIALOGS';
+const SET_AUTH_DATA = 'SET_AUTH_DATA';
 
 let initialState = {
-    dialogs: [
-        {id: 1, name: 'Alesya'},
-        {id: 2, name: 'Nikita'},
-        {id: 3, name: 'Vlad'},
-        {id: 4, name: 'Andrew'},
-        {id: 5, name: 'IT-Kamasutra'},
-    ],
-    messages: [
-        {id: 1, message: 'Hi!'},
-        {id: 2, message: 'When to the gym?'},
-        {id: 3, message: 'Where is cities???'},
-    ],
-    textarea: {
-        value: '',
-    },
+    id: null,
+    email: null,
+    login: null,
+    isAuth: false,
 }
 
-const dialogsReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case ADD_NEW_MESSAGE: {
+        case SET_AUTH_DATA: {
             return {
                 ...state,
-                messages: [...state.messages, {id: 4, message: state.textarea.value}],
-                textarea: {value: ''},
-            }
-        }
-        case CHANGE_TEXTAREA: {
-            if (action.page === DIALOGS) {
-                return {
-                    ...state,
-                    textarea: {value: action.value},
-                }
+                ...action.data,
+                isAuth: true,
             }
         }
         default:
@@ -43,16 +22,7 @@ const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-export const addNewMessageActionCreator = () => {
-    return {type: ADD_NEW_MESSAGE}
-}
-export const changeDialogsTextareaActionCreator = (value) => {
-    return ({
-        type: CHANGE_TEXTAREA,
-        page: DIALOGS,
-        value: value,
-    })
-}
 
+export const setAuthData = (id, email, login) => ({type: SET_AUTH_DATA, data: {id, email, login}});
 
-export default dialogsReducer;
+export default authReducer;

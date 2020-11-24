@@ -3,14 +3,14 @@ import css from './Header.module.css'
 import HeaderMenu from "./HeaderMenu/HeaderMenu";
 import {NavLink} from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
 	return (
 		<header>
 			<div className={css.content}>
 				<NavLink to='/'>
 					<img src="https://cdn.auth0.com/blog/react-js/react.png" alt="react logo"/>
 				</NavLink>
-				<HeaderMenu/>
+				<HeaderMenu {...props} />
 			</div>
 			<hr/>
 		</header>

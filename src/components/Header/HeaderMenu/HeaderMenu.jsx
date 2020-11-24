@@ -29,6 +29,12 @@ const HeaderMenu = (props) => {
                 <img src="https://cdn3.iconfinder.com/data/icons/vector-icons-for-mobile-apps-2/512/Settings_black-512.png" alt=""/>
                 <p>Settings</p>
             </NavLink>
+            <div className={css.item}>
+                {props.authData.isAuth
+                    ? <p>{props.authData.login}</p>
+                    : <p>Login</p>
+                }
+            </div>
         </nav>
     )
 }
