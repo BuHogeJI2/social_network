@@ -2,25 +2,14 @@ import React from 'react'
 import {connect} from "react-redux";
 import Users from "./Users";
 import {
-    follow,
-    setCurrentPage, setFollowingInProgress,
-    setIsFetching,
-    setState,
-    setTotalCount,
-    unfollow
+    followUser, getUsers, pageClick, setFollowingInProgress, unfollowUser,
 } from "../../../redux/users-reducer";
 import Preloader from "../../Common/Preloader/Preloader";
-import {usersAPI} from "../../../api/api";
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.setIsFetching(true);
-        usersAPI.getPage(this.props.pageSize, this.props.currentPage).then(data => {
-            this.props.setIsFetching(false);
-            this.props.setState(data.items);
-            this.props.setTotalCount(data.totalCount);
-        })
+        this.props.getUsers(this.props.pageSize, this.props.currentPage);
     }
 
     getPagesCount = () => {
@@ -36,13 +25,7 @@ class UsersContainer extends React.Component {
     }
 
     pageClick = (page) => {
-        this.props.setIsFetching(true);
-        this.props.setCurrentPage(page);
-        usersAPI.getPage(this.props.pageSize, page).then(data => {
-            this.props.setIsFetching(false);
-            this.props.setState(data.items);
-            this.props.setTotalCount(data.totalCount);
-        })
+        this.props.pageClick(this.props.pageSize, page)
     }
 
     render() {
@@ -54,8 +37,8 @@ class UsersContainer extends React.Component {
                 getPagesCount={this.getPagesCount}
                 currentPage={this.props.currentPage}
                 pageClick={this.pageClick}
-                follow={this.props.follow}
-                unfollow={this.props.unfollow}
+                followUser={this.props.followUser}
+                unfollowUser={this.props.unfollowUser}
                 setFollowingInProgress={this.props.setFollowingInProgress}
                 followingInProgress={this.props.followingInProgress}
             />
@@ -76,5 +59,5 @@ let mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-    follow, unfollow, setState, setTotalCount, setCurrentPage, setIsFetching, setFollowingInProgress,
+    setFollowingInProgress, getUsers, pageClick, unfollowUser, followUser,
 })(UsersContainer);

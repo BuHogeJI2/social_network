@@ -16,15 +16,29 @@ export const usersAPI = {
         })
     },
 
+    getProfileData(userId) {
+        return axiosInstance.get(`profile/${userId}`).then(response => {
+            return response.data;
+        });
+    },
+
     followUser(userId) {
         return axiosInstance.post(`follow/${userId}`).then(response => {
-            return response.data
+            return response.data;
         })
     },
 
     unfollowUser(userId) {
         return axiosInstance.delete(`follow/${userId}`).then(response => {
-            return response.data
+            return response.data;
         })
     },
+}
+
+export const authAPI ={
+    logIn() {
+        return axiosInstance.get('auth/me').then(response => {
+            return response.data;
+        });
+    }
 }

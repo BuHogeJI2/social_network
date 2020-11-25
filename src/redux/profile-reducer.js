@@ -1,3 +1,6 @@
+import * as axios from "axios";
+import {usersAPI} from "../api/api";
+
 const ADD_NEW_POST = 'ADD-NEW-POST';
 const CHANGE_TEXTAREA = 'CHANGE-TEXTAREA';
 const PROFILE = 'PROFILE';
@@ -57,9 +60,7 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addNewPostActionCreator = () => {
-    return {type: ADD_NEW_POST}
-}
+export const addNewPostActionCreator = () => ({type: ADD_NEW_POST})
 export const changeProfileTextareaActionCreator = (value) => {
     return ({
         type: CHANGE_TEXTAREA,
@@ -69,5 +70,12 @@ export const changeProfileTextareaActionCreator = (value) => {
 }
 
 export const setProfileData = (profileData) => ({type: SET_PROFILE_DATA, profileData})
+
+export const addProfileData = (userId) => (dispatch) => {
+    if (!userId) userId = 2;
+    usersAPI.getProfileData(userId).then(data => {
+        dispatch(setProfileData(data));
+    })
+}
 
 export default profileReducer;

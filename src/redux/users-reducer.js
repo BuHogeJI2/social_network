@@ -1,5 +1,7 @@
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
+import {usersAPI} from "../api/api";
+
+const SET_FOLLOW = 'SET_FOLLOW';
+const SET_UNFOLLOW = 'SET_UNFOLLOW';
 const SET_STATE = 'SET_STATE';
 const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
@@ -18,7 +20,7 @@ let initialState = {
 const usersReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case FOLLOW: {
+        case SET_FOLLOW: {
             return {
                 ...state,
                 users: state.users.map(u => {
@@ -29,7 +31,7 @@ const usersReducer = (state = initialState, action) => {
                 })
             }
         }
-        case UNFOLLOW: {
+        case SET_UNFOLLOW: {
             return {
                 ...state,
                 users: state.users.map(u => {
@@ -86,13 +88,47 @@ const usersReducer = (state = initialState, action) => {
 
 }
 
-export const follow = (userId) => {return {type: FOLLOW, userId} }
-export const unfollow = (userId) => { return {type: UNFOLLOW, userId} }
+export const setFollow = (userId) => {return {type: SET_FOLLOW, userId} }
+export const setUnfollow = (userId) => { return {type: SET_UNFOLLOW, userId} }
 export const setState = (users) => { return {type: SET_STATE, users} }
 export const setTotalCount = (totalCount) => {return {type: SET_TOTAL_COUNT, totalCount}}
 export const setCurrentPage = (pageNumber) => {return {type: SET_CURRENT_PAGE, pageNumber}}
 export const setIsFetching = (isFetching) => {return {type: SET_IS_FETCHING, isFetching}}
 export const setFollowingInProgress = (isFollowing, userId) => {return {type: SET_FOLLOWING_IN_PROGRESS, isFollowing, userId}}
 
+export const getUsers = (pageSize, currentPage) => (dispatch) => {
+    dispatch(setIsFetching(true));
+    usersAPI.getPage(pageSize, currentPage).then(data => {
+        dispatch(setIsFetching(false));
+        dispatch(setState(data.items));
+        dispatch(setTotalCount(data.totalCount));
+    })
+}
+
+export const pageClick = (pageSize, pageNumber) => (dispatch) => {
+    dispatch(setIsFetching(true));
+    dispatch(setCurrentPage(pageNumber));
+    usersAPI.getPage(pageSize, pageNumber).then(data => {
+        dispatch(setIsFetching(false));
+        dispatch(setState(data.items));
+        dispatch(setTotalCount(data.totalCount));
+    })
+}
+
+export const unfollowUser = (userId) => (dispatch) => {
+    dispatch(setFollowingInProgress(true, userId));
+    usersAPI.unfollowUser(userId).then(data => {
+        dispatch(setFollowingInProgress(false, userId));
+        data.resultCode === 0 && dispatch(setUnfollow(userId));
+    })
+}
+
+export const followUser = (userId) => (dispatch) => {
+    dispatch(setFollowingInProgress(true, userId));
+    usersAPI.followUser(userId).then(data => {
+        dispatch(setFollowingInProgress(false, userId));
+        data.resultCode === 0 && dispatch(setFollow(userId));
+    })
+}
 
 export default usersReducer;
