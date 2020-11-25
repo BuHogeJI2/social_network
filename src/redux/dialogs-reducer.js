@@ -36,7 +36,7 @@ const dialogsReducer = (state = initialState, action) => {
                     ...state,
                     textarea: {value: action.value},
                 }
-            }
+            } break;
         }
         default:
             return state;
