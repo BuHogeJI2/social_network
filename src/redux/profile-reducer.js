@@ -34,18 +34,8 @@ const profileReducer = (state = initialState, action) => {
         case ADD_NEW_POST: {
             return {
                 ...state,
-                posts: [...state.posts, {text: state.textarea.value, id: 5}],
-                textarea: {value: ''},
+                posts: [...state.posts, {text: action.newPostText, id: 5}],
             }
-        }
-
-        case CHANGE_TEXTAREA: {
-            if (action.page === PROFILE) {
-                return {
-                    ...state,
-                    textarea: {value: action.value}
-                }
-            } break;
         }
 
         case SET_PROFILE_DATA: {
@@ -68,14 +58,7 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addNewPostActionCreator = () => ({type: ADD_NEW_POST})
-export const changeProfileTextareaActionCreator = (value) => {
-    return ({
-        type: CHANGE_TEXTAREA,
-        page: PROFILE,
-        value: value,
-    })
-}
+export const addNewPost = (newPostText) => ({type: ADD_NEW_POST, newPostText})
 
 export const setProfileData = (profileData) => ({type: SET_PROFILE_DATA, profileData})
 export const setProfileStatus = (status) => ({type: SET_PROFILE_STATUS, status})

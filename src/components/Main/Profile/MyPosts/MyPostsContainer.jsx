@@ -1,10 +1,7 @@
 import React from 'react'
-import {
-    addNewPostActionCreator,
-    changeProfileTextareaActionCreator,
-} from "../../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
+import {addNewPost} from "../../../../redux/profile-reducer";
 
 let mapStateToProps = (state) => {
     return {
@@ -12,19 +9,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        addNewPost: () => {
-            dispatch(addNewPostActionCreator());
-        },
-        changeProfileTextarea: (text) => {
-            dispatch(changeProfileTextareaActionCreator(text));
-        }
-    }
 
-}
-
-
-const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+const MyPostsContainer = connect(mapStateToProps, {addNewPost})(MyPosts)
 
 export default MyPostsContainer;
