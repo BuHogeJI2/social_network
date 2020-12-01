@@ -17,9 +17,8 @@ export const usersAPI = {
     },
 
     getProfileData(userId) {
-        return axiosInstance.get(`profile/${userId}`).then(response => {
-            return response.data;
-        });
+        console.warn('Please, use profileAPI!');
+        return profileAPI.getProfileData(userId);
     },
 
     followUser(userId) {
@@ -33,6 +32,22 @@ export const usersAPI = {
             return response.data;
         })
     },
+}
+
+export const profileAPI = {
+    getProfileData(userId) {
+        return axiosInstance.get(`profile/${userId}`).then(response => {
+            return response.data;
+        });
+    },
+
+    getStatus(userId) {
+        return axiosInstance.get(`profile/status/${userId}`).then(response => response.data);
+    },
+
+    updateStatus(status) {
+        return axiosInstance.put(`profile/status`, {status: status});
+    }
 }
 
 export const authAPI ={

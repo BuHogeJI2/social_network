@@ -1,10 +1,10 @@
-import * as axios from "axios";
-import {usersAPI} from "../api/api";
+import {profileAPI, usersAPI} from "../api/api";
 
 const ADD_NEW_POST = 'ADD-NEW-POST';
 const CHANGE_TEXTAREA = 'CHANGE-TEXTAREA';
 const PROFILE = 'PROFILE';
 const SET_PROFILE_DATA = 'SET_PROFILE_DATA';
+const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS';
 
 let initialState = {
     posts: [
@@ -24,6 +24,7 @@ let initialState = {
         value: '',
     },
     profileData: null,
+    status: '',
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -54,6 +55,13 @@ const profileReducer = (state = initialState, action) => {
             }
         }
 
+        case SET_PROFILE_STATUS: {
+            return {
+                ...state,
+                status: action.status,
+            }
+        }
+
         default: {
             return state;
         }
@@ -70,11 +78,27 @@ export const changeProfileTextareaActionCreator = (value) => {
 }
 
 export const setProfileData = (profileData) => ({type: SET_PROFILE_DATA, profileData})
+export const setProfileStatus = (status) => ({type: SET_PROFILE_STATUS, status})
 
 export const addProfileData = (userId) => (dispatch) => {
-    if (!userId) userId = 2;
+    if (!userId) userId = 12833;
     usersAPI.getProfileData(userId).then(data => {
         dispatch(setProfileData(data));
+    })
+}
+
+export const getProfileStatus = (userId) => (dispatch) => {
+    if (!userId) userId = 12833;
+    profileAPI.getStatus(userId).then(data => {
+        dispatch(setProfileStatus(data));
+    })
+}
+
+export const updateProfileStatus = (status) => (dispatch) => {
+    profileAPI.updateStatus(status).then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(setProfileStatus(status))
+        }
     })
 }
 

@@ -5,6 +5,10 @@
 	color: white;
 }
 
+.name {
+	text-align: start;
+}
+
 .row {
 	margin-top: 10px;
 	display: flex;
