@@ -31,7 +31,7 @@ export const setAuthData = (id, email, login, isAuth) => ({type: SET_AUTH_DATA, 
 
 export const getMe = () => (dispatch) => {
 
-    authAPI.logInMe().then(response => {
+    return authAPI.logInMe().then(response => {
         if (!response.data.resultCode) {
             let {id, email, login} = response.data.data;
             dispatch(setAuthData(id, email, login, true));
@@ -40,7 +40,6 @@ export const getMe = () => (dispatch) => {
         }
 
     })
-
 }
 
 export const logIn = (values) => (dispatch) => {
