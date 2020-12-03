@@ -31,7 +31,7 @@ const HeaderMenu = (props) => {
             </NavLink>
             <div className={css.item}>
                 {props.authData.isAuth
-                    ? <p>{props.authData.login}</p>
+                    ? <div><p>{props.authData.login}</p><button onClick={props.logOut}>Logout</button></div>
                     : <p>Login</p>
                 }
             </div>

@@ -1,9 +1,11 @@
 import React from 'react'
 import {Field, reduxForm} from "redux-form";
-import {authAPI} from "../../../../api/api";
-import {Redirect} from "react-router-dom";
 import {Input} from "../FormControls/FormControls";
 import {maxLength, required} from "../../../../utils/validators/validators";
+import {connect} from "react-redux";
+import {logIn} from "../../../../redux/auth-reducer";
+import {Redirect} from "react-router-dom";
+import css from '../FormControls/FormConstrols.module.css'
 
 
 let maxLength50 = maxLength(50);
@@ -14,6 +16,12 @@ const LoginForm = (props) => {
             <Field name={'email'} validate={[required, maxLength50]} component={Input} type={'email'} placeholder={'Login'} />
             <Field name={'password'} validate={[required, maxLength50]} component={Input} type={'password'} placeholder={'password'} />
             <Field name={'rememberMe'} component={Input} type={'checkbox'} />
+            {
+                props.error &&
+                <div className={css.error_block}>
+                    {props.error}
+                </div>
+            }
             <button>Log in</button>
         </form>
     )
@@ -24,9 +32,11 @@ const LoginReduxForm = reduxForm({form: 'loginForm'})(LoginForm)
 const Login = (props) => {
 
     const onSubmit = (values) => {
-        authAPI.logIn(values.email, values.password, values.rememberMe).then(response => {
-            if (response.data.resultCode === 0) return <Redirect to={'/profile'}/>
-        })
+        props.logIn(values);
+    }
+
+    if (props.isAuth) {
+        return <Redirect to={'/profile'} />
     }
 
     return (
@@ -37,4 +47,10 @@ const Login = (props) => {
     )
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+    return {
+        isAuth: state.auth.isAuth,
+    }
+}
+
+export default connect(mapStateToProps, {logIn})(Login);

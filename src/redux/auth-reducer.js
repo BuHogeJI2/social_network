@@ -1,4 +1,6 @@
 import {authAPI} from "../api/api";
+import React from "react";
+import {stopSubmit} from "redux-form";
 
 const SET_AUTH_DATA = 'SET_AUTH_DATA';
 
@@ -39,6 +41,25 @@ export const getMe = () => (dispatch) => {
 
     })
 
+}
+
+export const logIn = (values) => (dispatch) => {
+    authAPI.logIn(values.email, values.password, values.rememberMe).then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(getMe())
+        } else {
+            let errorMessage = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error';
+            dispatch(stopSubmit('loginForm', {_error: errorMessage}))
+        }
+    })
+}
+
+export const logOut = () => (dispatch) => {
+    authAPI.logOut().then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(setAuthData(null, null, null, false));
+        }
+    })
 }
 
 export default authReducer;
