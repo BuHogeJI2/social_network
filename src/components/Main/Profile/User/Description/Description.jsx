@@ -1,12 +1,13 @@
 import css from './Description.module.css'
 import ProfileStatus from "../../ProfileInfo/ProfileStatus/ProfileStatus";
 import {updateProfileStatus} from "../../../../../redux/profile-reducer";
+import ProfileStatusWithHooks from "../../ProfileInfo/ProfileStatus/ProfileStatusWithHooks";
 
 const Description = (props) => {
 	return (
 		<div className={css.description}>
 			<h2 className={css.name}>{props.profileData.fullName}</h2>
-			<ProfileStatus status={props.status} updateProfileStatus={props.updateProfileStatus}/>
+			<ProfileStatusWithHooks status={props.status} updateProfileStatus={props.updateProfileStatus}/>
 			<div className={css.row}>
 				<div className={css.key}>Date of birth:</div>
 				<div className={css.value}>3 october</div>
