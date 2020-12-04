@@ -96,7 +96,7 @@ export const setCurrentPage = (pageNumber) => {return {type: SET_CURRENT_PAGE, p
 export const setIsFetching = (isFetching) => {return {type: SET_IS_FETCHING, isFetching}}
 export const setFollowingInProgress = (isFollowing, userId) => {return {type: SET_FOLLOWING_IN_PROGRESS, isFollowing, userId}}
 
-export const getUsers = (pageSize, currentPage) => (dispatch) => {
+export const requestUsers = (pageSize, currentPage) => (dispatch) => {
     dispatch(setIsFetching(true));
     usersAPI.getPage(pageSize, currentPage).then(data => {
         dispatch(setIsFetching(false));
