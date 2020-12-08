@@ -1,10 +1,9 @@
 import {profileAPI, usersAPI} from "../api/api";
 
-const ADD_NEW_POST = 'ADD-NEW-POST';
-const CHANGE_TEXTAREA = 'CHANGE-TEXTAREA';
-const PROFILE = 'PROFILE';
+const ADD_NEW_POST = 'ADD_NEW_POST';
 const SET_PROFILE_DATA = 'SET_PROFILE_DATA';
 const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS';
+const DELETE_POST = 'DELETE_POST';
 
 let initialState = {
     posts: [
@@ -38,6 +37,13 @@ const profileReducer = (state = initialState, action) => {
             }
         }
 
+        case DELETE_POST: {
+            return {
+                ...state,
+                posts: [...state.posts.filter(p => p.id !== action.postId)]
+            }
+        }
+
         case SET_PROFILE_DATA: {
             return {
                 ...state,
@@ -58,10 +64,11 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addNewPost = (newPostText) => ({type: ADD_NEW_POST, newPostText})
+export const addNewPost = (newPostText) => ({type: ADD_NEW_POST, newPostText});
+export const deletePost = (postId) => ({type: DELETE_POST, postId});
 
-export const setProfileData = (profileData) => ({type: SET_PROFILE_DATA, profileData})
-export const setProfileStatus = (status) => ({type: SET_PROFILE_STATUS, status})
+export const setProfileData = (profileData) => ({type: SET_PROFILE_DATA, profileData});
+export const setProfileStatus = (status) => ({type: SET_PROFILE_STATUS, status});
 
 export const addProfileData = (userId) => (dispatch) => {
     if (!userId) userId = 12833;
