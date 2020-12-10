@@ -16,11 +16,6 @@ export const usersAPI = {
         })
     },
 
-    getProfileData(userId) {
-        console.warn('Please, use profileAPI!');
-        return profileAPI.getProfileData(userId);
-    },
-
     followUser(userId) {
         return axiosInstance.post(`follow/${userId}`).then(response => {
             return response.data;

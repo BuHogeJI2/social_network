@@ -22,7 +22,7 @@ class App extends React.Component {
         return (
             <div>
                 <HeaderContainer/>
-                <Main/>
+                <Main meId={this.props.meId} />
             </div>
         )
     }
@@ -30,6 +30,7 @@ class App extends React.Component {
 
 let mapStateToProps = (state) => ({
     initialized: state.app.initialized,
+    meId: state.auth.id,
 })
 
 export default connect(mapStateToProps, {initializeApp})(App);

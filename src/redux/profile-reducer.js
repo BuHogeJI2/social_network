@@ -1,9 +1,9 @@
-import {profileAPI, usersAPI} from "../api/api";
+import {profileAPI} from "../api/api";
 
-const ADD_NEW_POST = 'ADD_NEW_POST';
-const SET_PROFILE_DATA = 'SET_PROFILE_DATA';
-const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS';
-const DELETE_POST = 'DELETE_POST';
+const ADD_NEW_POST = 'profile/ADD_NEW_POST';
+const SET_PROFILE_DATA = 'profile/SET_PROFILE_DATA';
+const SET_PROFILE_STATUS = 'profile/SET_PROFILE_STATUS';
+const DELETE_POST = 'profile/DELETE_POST';
 
 let initialState = {
     posts: [
@@ -70,26 +70,20 @@ export const deletePost = (postId) => ({type: DELETE_POST, postId});
 export const setProfileData = (profileData) => ({type: SET_PROFILE_DATA, profileData});
 export const setProfileStatus = (status) => ({type: SET_PROFILE_STATUS, status});
 
-export const addProfileData = (userId) => (dispatch) => {
-    if (!userId) userId = 12833;
-    usersAPI.getProfileData(userId).then(data => {
-        dispatch(setProfileData(data));
-    })
+export const addProfileData = (userId) => async (dispatch) => {
+    let data = await profileAPI.getProfileData(userId)
+    dispatch(setProfileData(data));
 }
 
-export const getProfileStatus = (userId) => (dispatch) => {
-    if (!userId) userId = 12833;
-    profileAPI.getStatus(userId).then(data => {
-        dispatch(setProfileStatus(data));
-    })
+export const getProfileStatus = (userId) => async (dispatch) => {
+    let data = await profileAPI.getStatus(userId)
+    dispatch(setProfileStatus(data));
 }
 
-export const updateProfileStatus = (status) => (dispatch) => {
-    profileAPI.updateStatus(status).then(response => {
-        if (response.data.resultCode === 0) {
-            dispatch(setProfileStatus(status))
-        }
-    })
+export const updateProfileStatus = (status) => async (dispatch) => {
+    let response = await profileAPI.updateStatus(status);
+    if (!response.data.resultCode) dispatch(setProfileStatus(status))
+
 }
 
 export default profileReducer;

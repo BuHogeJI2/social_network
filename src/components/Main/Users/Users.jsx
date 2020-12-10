@@ -1,61 +1,22 @@
 import React from 'react'
 import css from './Users.module.css'
-import userPhoto from '../../../assets/images/user_photo_not_found.png'
-import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../../api/api";
+import Paginator from "../../Common/Paginator/Paginator";
+import User from "./User/User";
 
 const Users = (props) => {
     return <div className={css.users_block}>
         <h2>Users ({props.usersPage.users.length})</h2>
         {
-            props.usersPage.users.map(u => <div>
-                <div className={css.user}>
-                    <div className={css.user_action_part}>
-                        <NavLink to={`profile/${u.id}`}>
-                            <img src={u.photos.small ? u.photos.small : userPhoto} alt=""/>
-                        </NavLink>
-                        <div>
-                            {
-                                u.followed ?
-                                    <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                            onClick={() => {props.unfollowUser(u.id)}}>Unfollow</button> :
-                                    <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                            onClick={() => {props.followUser(u.id)}}>Follow</button>
-                            }
-                        </div>
-                    </div>
-                    <div className={css.user_info_part}>
-                        <div className={css.user_location_block}>
-                            <div className={css.user_city}>
-                                {'u.location.city'}
-                            </div>
-                            <div className={css.user_country}>
-                                {'u.location.country'}
-                            </div>
-                        </div>
-                        <div className={css.user_name_block}>
-                            {u.name}
-                        </div>
-                        <div className={css.user_status_block}>
-                            {u.status ? u.status : 'No status'}
-                        </div>
-
-                    </div>
-                </div>
-            </div>)
+            props.usersPage.users.map(u => <User user={u}
+                                                 unfollowUser={props.unfollowUser}
+                                                 followUser={props.followUser}
+                                                 followingInProgress={props.followingInProgress}/>)
         }
         <div className={css.pagination_block}>
-            {
-                props.getPages(props.getPagesCount()).map(p => {
-                    return <div
-                        className={`${css.page_block} ${p === props.currentPage && css.current_page}`}
-                        onClick={() => {
-                            props.pageClick(p)
-                        }}
-                    >{p}
-                    </div>
-                })
-            }
+            <Paginator getPages={props.getPages}
+                       currentPage={props.currentPage}
+                       pageClick={props.pageClick}
+                       getPagesCount={props.getPagesCount} />
         </div>
     </div>
 }

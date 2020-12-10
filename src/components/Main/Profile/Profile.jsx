@@ -3,18 +3,17 @@ import css from './Profile.module.css'
 import MyPostsContainer from './MyPosts/MyPostsContainer'
 import MyFriendsContainer from "./MyFriends/MyFriendsContainer";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {updateProfileStatus} from "../../../redux/profile-reducer";
 
-const Profile = (props) => {
+const Profile = ({profilePage, updateProfileStatus}) => {
 	return (
 		<section className={css.profile}>
 			<div className={css.main_column}>
-				<ProfileInfo profileData={props.profilePage.profileData} status={props.profilePage.status}
-							 updateProfileStatus={props.updateProfileStatus}/>
-				<MyPostsContainer />
+				<ProfileInfo profileData={profilePage.profileData} status={profilePage.status}
+							 updateProfileStatus={updateProfileStatus}/>
+				<MyPostsContainer profilePage={profilePage} />
 			</div>
 			<div className={css.right_column}>
-				<MyFriendsContainer />
+				<MyFriendsContainer friends={profilePage.friends}/>
 			</div>
 		</section>
 	)

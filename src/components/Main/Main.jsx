@@ -7,12 +7,12 @@ import ProfileContainer from "./Profile/ProfileContainer";
 import Login from "../Common/Forms/LoginForm/LoginForm";
 
 
-const Main = () => {
+const Main = (props) => {
 
     return (
         <main>
             <div className={css.content_wrapper}>
-                <Route path='/profile/:userId?' render={() => <ProfileContainer />}/>
+                <Route path='/profile/:userId?' render={() => <ProfileContainer meId={props.meId} />}/>
                 <Route path='/dialogs' render={() => <DialogsContainer />}/>
                 <Route path='/users' render={ () => <UsersContainer /> } />
                 <Route path={'/login'} render={ () => <Login /> } />

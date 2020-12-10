@@ -9,7 +9,9 @@ import {compose} from "redux";
 class ProfileContainer extends React.Component {
 
 	componentDidMount = () => {
+		debugger;
 		let userId = this.props.match.params.userId;
+		if (!userId) userId = this.props.meId;
 		this.props.addProfileData(userId);
 		this.props.getProfileStatus(userId);
 	}

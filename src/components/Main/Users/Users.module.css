@@ -7,46 +7,6 @@
     background: #414040;
 }
 
-.user {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.user_action_part {
-    width: 10%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.user_action_part img {
-    width: 50px;
-    cursor: pointer;
-}
-
-.user_action_part button {
-    margin-top: 10px;
-}
-
-.user_info_part {
-    padding: 10px;
-    width: 70%;
-    border-radius: 10px;
-    background: #EBF5F6;
-}
-
-.user_location_block {
-    float: right;
-}
-
-.user_status_block {
-    margin-top: 20px;
-}
-
 .pagination_block {
     width: 90%;
     margin: 20px auto 0;
