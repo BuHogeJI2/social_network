@@ -12,12 +12,12 @@ const Users = (props) => {
                                                  followUser={props.followUser}
                                                  followingInProgress={props.followingInProgress}/>)
         }
-        <div className={css.pagination_block}>
-            <Paginator getPages={props.getPages}
-                       currentPage={props.currentPage}
-                       pageClick={props.pageClick}
-                       getPagesCount={props.getPagesCount} />
-        </div>
+        <Paginator getPagesList={props.getPagesList}
+                   currentPage={props.currentPage}
+                   pageClick={props.pageClick}
+                   getPagesCount={props.getPagesCount}
+                   portionSize={10}
+        />
     </div>
 }
 

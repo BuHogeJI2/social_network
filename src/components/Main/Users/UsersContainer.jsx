@@ -25,7 +25,7 @@ class UsersContainer extends React.Component {
         return Math.ceil(this.props.totalCount / this.props.pageSize);
     }
 
-    getPages = (count) => {
+    getPagesList = (count) => {
         let result = [];
         for (let i = 1; i <= count; i++) {
             result.push(i);
@@ -42,7 +42,7 @@ class UsersContainer extends React.Component {
             {this.props.isFetching ? <Preloader/> : null}
             <Users
                 usersPage={this.props.usersPage}
-                getPages={this.getPages}
+                getPagesList={this.getPagesList}
                 getPagesCount={this.getPagesCount}
                 currentPage={this.props.currentPage}
                 pageClick={this.pageClick}
