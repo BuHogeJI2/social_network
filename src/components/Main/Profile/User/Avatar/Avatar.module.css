@@ -8,3 +8,7 @@
 	box-shadow: 0 0 5px #414040;
 	background: #EBF5F6;
 }
+
+.avatar input {
+	margin-left: 200px;
+}

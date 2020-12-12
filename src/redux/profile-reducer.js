@@ -4,6 +4,8 @@ const ADD_NEW_POST = 'profile/ADD_NEW_POST';
 const SET_PROFILE_DATA = 'profile/SET_PROFILE_DATA';
 const SET_PROFILE_STATUS = 'profile/SET_PROFILE_STATUS';
 const DELETE_POST = 'profile/DELETE_POST';
+const UPDATE_PHOTO_SUCCESS = 'profile/UPDATE_PHOTO_SUCCESS';
+const SET_IS_FETCHING = 'profile/SET_IS_FETCHING'
 
 let initialState = {
     posts: [
@@ -24,6 +26,7 @@ let initialState = {
     },
     profileData: null,
     status: '',
+    isFetching: false,
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -51,10 +54,27 @@ const profileReducer = (state = initialState, action) => {
             }
         }
 
+        case SET_IS_FETCHING: {
+            return {
+                ...state,
+                isFetching: action.isFetching,
+            }
+        }
+
         case SET_PROFILE_STATUS: {
             return {
                 ...state,
                 status: action.status,
+            }
+        }
+
+        case UPDATE_PHOTO_SUCCESS: {
+            return {
+                ...state,
+                profileData: {
+                    ...state.profileData,
+                    photos: action.photos,
+                }
             }
         }
 
@@ -69,6 +89,9 @@ export const deletePost = (postId) => ({type: DELETE_POST, postId});
 
 export const setProfileData = (profileData) => ({type: SET_PROFILE_DATA, profileData});
 export const setProfileStatus = (status) => ({type: SET_PROFILE_STATUS, status});
+export const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching})
+
+export const updateProfilePhotoSuccess = (photos) => ({type: UPDATE_PHOTO_SUCCESS, photos})
 
 export const addProfileData = (userId) => async (dispatch) => {
     let data = await profileAPI.getProfileData(userId)
@@ -84,6 +107,13 @@ export const updateProfileStatus = (status) => async (dispatch) => {
     let response = await profileAPI.updateStatus(status);
     if (!response.data.resultCode) dispatch(setProfileStatus(status))
 
+}
+
+export const updateProfilePhoto = (profilePhoto) => async (dispatch) => {
+    dispatch(setIsFetching(true));
+    let data = await profileAPI.savePhoto(profilePhoto);
+    dispatch(setIsFetching(false));
+    if (!data.resultCode) dispatch(updateProfilePhotoSuccess(data.data));
 }
 
 export default profileReducer;

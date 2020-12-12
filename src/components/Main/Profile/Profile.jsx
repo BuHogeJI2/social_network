@@ -4,12 +4,17 @@ import MyPostsContainer from './MyPosts/MyPostsContainer'
 import MyFriendsContainer from "./MyFriends/MyFriendsContainer";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = ({profilePage, updateProfileStatus}) => {
+const Profile = ({profilePage, updateProfileStatus, updateProfilePhoto, isOwner}) => {
 	return (
 		<section className={css.profile}>
 			<div className={css.main_column}>
-				<ProfileInfo profileData={profilePage.profileData} status={profilePage.status}
-							 updateProfileStatus={updateProfileStatus}/>
+				<ProfileInfo profileData={profilePage.profileData}
+							 status={profilePage.status}
+							 isFetching={profilePage.isFetching}
+							 updateProfilePhoto={updateProfilePhoto}
+							 updateProfileStatus={updateProfileStatus}
+							 isOwner={isOwner}
+				/>
 				<MyPostsContainer profilePage={profilePage} />
 			</div>
 			<div className={css.right_column}>
