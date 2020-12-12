@@ -1,11 +1,13 @@
 import {profileAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const ADD_NEW_POST = 'profile/ADD_NEW_POST';
 const SET_PROFILE_DATA = 'profile/SET_PROFILE_DATA';
 const SET_PROFILE_STATUS = 'profile/SET_PROFILE_STATUS';
 const DELETE_POST = 'profile/DELETE_POST';
 const UPDATE_PHOTO_SUCCESS = 'profile/UPDATE_PHOTO_SUCCESS';
-const SET_IS_FETCHING = 'profile/SET_IS_FETCHING'
+const SET_IS_FETCHING = 'profile/SET_IS_FETCHING';
+const SET_PROFILE_EDIT_MODE = 'profile/SET_PROFILE_EDIT_MODE';
 
 let initialState = {
     posts: [
@@ -27,6 +29,7 @@ let initialState = {
     profileData: null,
     status: '',
     isFetching: false,
+    profileEditMode: false,
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -68,6 +71,13 @@ const profileReducer = (state = initialState, action) => {
             }
         }
 
+        case SET_PROFILE_EDIT_MODE: {
+            return {
+                ...state,
+                profileEditMode: action.editMode,
+            }
+        }
+
         case UPDATE_PHOTO_SUCCESS: {
             return {
                 ...state,
@@ -90,6 +100,7 @@ export const deletePost = (postId) => ({type: DELETE_POST, postId});
 export const setProfileData = (profileData) => ({type: SET_PROFILE_DATA, profileData});
 export const setProfileStatus = (status) => ({type: SET_PROFILE_STATUS, status});
 export const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching})
+export const setProfileEditMode = (editMode) => ({type: SET_PROFILE_EDIT_MODE, editMode})
 
 export const updateProfilePhotoSuccess = (photos) => ({type: UPDATE_PHOTO_SUCCESS, photos})
 
@@ -114,6 +125,29 @@ export const updateProfilePhoto = (profilePhoto) => async (dispatch) => {
     let data = await profileAPI.savePhoto(profilePhoto);
     dispatch(setIsFetching(false));
     if (!data.resultCode) dispatch(updateProfilePhotoSuccess(data.data));
+}
+
+export const updateProfileEditMode = (editMode) => (dispatch) => {
+    dispatch(setProfileEditMode(editMode))
+}
+
+export const updateProfileData = (data) => async (dispatch, getState) => {
+    const userId = getState().auth.id;
+    const response = await profileAPI.updateProfile(data);
+    if (!response.data.resultCode) {
+        dispatch(setProfileEditMode(false));
+        dispatch(addProfileData(userId));
+    } else {
+        if (response.data.messages.length) {
+            let contactWithError = response.data.messages[0].split('->')[1].split(')')[0].toLowerCase();
+            dispatch(stopSubmit('profile_edit_form', {
+                'contacts': {
+                    [contactWithError]: response.data.messages[0],
+                }
+            }))
+        }
+
+    }
 }
 
 export default profileReducer;

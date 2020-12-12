@@ -4,7 +4,7 @@ import Friend from "./Friend/Friend";
 
 const MyFriends = ({friends}) => {
 
-    let friendElements = friends.map(f => <Friend name={f.name} img={f.img} id={f.id}/>)
+    let friendElements = friends.map(f => <Friend key={f.id} name={f.name} img={f.img} id={f.id}/>)
 
     return (
         <div className={css.friends_block}>

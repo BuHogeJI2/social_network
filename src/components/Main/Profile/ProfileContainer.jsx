@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {
 	addProfileData,
 	getProfileStatus,
-	setProfileData,
+	setProfileData, updateProfileData, updateProfileEditMode,
 	updateProfilePhoto,
 	updateProfileStatus
 } from "../../../redux/profile-reducer";
@@ -25,6 +25,8 @@ class ProfileContainer extends React.Component {
 		return <Profile profilePage={this.props.profilePage}
 						updateProfilePhoto={this.props.updateProfilePhoto}
 						updateProfileStatus={this.props.updateProfileStatus}
+						updateProfileData={this.props.updateProfileData}
+						updateProfileEditMode={this.props.updateProfileEditMode}
 						isOwner={!this.props.match.params.userId}
 		/>
 	}
@@ -36,7 +38,8 @@ let mapStateToProps = (state) => ({
 
 export default compose(
 	withAuthRedirect,
-	connect(mapStateToProps, {setProfileData, addProfileData, getProfileStatus, updateProfileStatus, updateProfilePhoto}),
+	connect(mapStateToProps, {setProfileData, addProfileData, getProfileStatus,
+			updateProfileStatus, updateProfilePhoto, updateProfileData, updateProfileEditMode}),
 	withRouter
 )(ProfileContainer);
 

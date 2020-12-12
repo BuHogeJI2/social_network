@@ -5,19 +5,19 @@ import {Field, reduxForm} from "redux-form";
 import {Textarea} from "../../../Common/Forms/FormControls/FormControls";
 import {maxLength, required} from "../../../../utils/validators/validators";
 
-const MyPosts = (props) => {
+const MyPosts = ({profilePage, addNewPost}) => {
 
-    let postElements = props.profilePage.posts.map(p => <Post text={p.text} /> )
+    let postElements = profilePage.posts.map(p => <Post key={p.id} text={p.text} /> )
 
-    let addNewPost = (values) => {
-        props.addNewPost(values.newPostText);
+    let onSubmit = (values) => {
+        addNewPost(values.newPostText);
     }
 
     return (
         <div className={css.my_posts}>
             <div className={css.add_post_block}>
                 <h1>My Posts</h1>
-                <AddNewPostFormRedux onSubmit={addNewPost} />
+                <AddNewPostFormRedux onSubmit={onSubmit} />
             </div>
             <div className={css.posts}>
                 {postElements}
@@ -28,10 +28,10 @@ const MyPosts = (props) => {
 
 const maxLength10 = maxLength(10);
 
-let AddNewPostForm = (props) => {
+let AddNewPostForm = ({handleSubmit}) => {
 
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <Field type={'text'} component={Textarea} name={'newPostText'}
                    validate={[required, maxLength10]} placeholder="your news"/>
             <button className={css.btn}>Add post</button>

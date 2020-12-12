@@ -4,7 +4,7 @@ import MyPostsContainer from './MyPosts/MyPostsContainer'
 import MyFriendsContainer from "./MyFriends/MyFriendsContainer";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = ({profilePage, updateProfileStatus, updateProfilePhoto, isOwner}) => {
+const Profile = ({updateProfileEditMode, profilePage, updateProfileStatus, updateProfilePhoto, isOwner, updateProfileData}) => {
 	return (
 		<section className={css.profile}>
 			<div className={css.main_column}>
@@ -14,6 +14,9 @@ const Profile = ({profilePage, updateProfileStatus, updateProfilePhoto, isOwner}
 							 updateProfilePhoto={updateProfilePhoto}
 							 updateProfileStatus={updateProfileStatus}
 							 isOwner={isOwner}
+							 updateProfileEditMode={updateProfileEditMode}
+							 updateProfileData={updateProfileData}
+							 editMode={profilePage.profileEditMode}
 				/>
 				<MyPostsContainer profilePage={profilePage} />
 			</div>
