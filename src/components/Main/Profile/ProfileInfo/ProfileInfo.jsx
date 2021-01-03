@@ -6,7 +6,7 @@ import Description from "../User/Description/Description";
 import Preloader from "../../../Common/Preloader/Preloader";
 
 const ProfileInfo = ({editMode, updateProfileEditMode, profileData, status, updateProfileStatus, updateProfilePhoto, isFetching, isOwner, updateProfileData}) => {
-    if (!profileData) return <Preloader />
+    if (!Object.keys(profileData).length) return <Preloader />
     return (
         <div className={css.profile_block}>
             <Background img={profileData.photos.large} />
